@@ -87,6 +87,9 @@ def main():
     f = open("videolist.txt", "w", encoding="UTF-8")
     index = 1
     for video in videolist:
+        if "Deleted video" in str(video["playlistVideoRenderer"]["title"]):
+            print("Video deleted")
+            continue
         title = video["playlistVideoRenderer"]["title"]["simpleText"]
         full_url = video["playlistVideoRenderer"]["navigationEndpoint"]["commandMetadata"]["webCommandMetadata"]["url"]
         matches = re.split(r"&", full_url)
